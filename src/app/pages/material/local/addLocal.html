@@ -1,0 +1,24 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">上传文件</h4>
+  </div>
+  <div class="modal-body">
+
+        <button class="btn btn-success" type="button" ng-click="fileInputClick()">选择</button>
+        <input type="file" id="localFile" ng-show="false" onchange="loadFile(this.files[0])" style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+      <span id="filename" style="vertical-align: middle">未上传文件</span>
+    </div>
+    <script>
+        function loadFile(file){
+            $("#filename").html(file.name);
+        }
+
+    </script>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="upload()">上传</button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+
+    <div class="col-xs-6 col-sm-4" ng-repeat="system in systems">
+        <div ba-panel ba-panel-title="{{system.name}}" ba-panel-class="with-scroll panel-info">
+            <div class="progress" ng-if="system.cpu<=system.cpusuccess">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{system.cpu}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.cpu}}%">
+                    CPU：{{system.cpu}}%
+                </div>
+            </div>
+            <div class="progress" ng-if="system.cpu<=system.cpuerror && system.cpu>system.cpusuccess">
+                <div class="progress-bar progress-bar-warning" role="progressbar"
+                     aria-valuenow="{{system.cpu}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.cpu}}%">
+                    CPU使用率：{{system.cpu}}%
+                </div>
+            </div>
+            <div class="progress" ng-if="system.cpu>system.cpuerror ">
+                <div class="progress-bar progress-bar-danger" role="progressbar"
+                     aria-valuenow="{{system.cpu}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.cpu}}%">
+                    CPU使用率：{{system.cpu}}%
+                </div>
+            </div>
+
+            <div class="progress" ng-if="system.disk<=system.cpusuccess">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{system.disk}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.disk}}%">磁盘：{{system.disk}}%
+                </div>
+            </div>
+            <div class="progress" ng-if="system.disk<=system.cpuerror && system.disk>system.cpusuccess">
+                <div class="progress-bar progress-bar-warning" role="progressbar"
+                     aria-valuenow="{{system.disk}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.disk}}%">
+                    磁盘使用率：{{system.disk}}%
+                </div>
+            </div>
+            <div class="progress" ng-if="system.disk>system.cpuerror ">
+                <div class="progress-bar progress-bar-danger" role="progressbar"
+                     aria-valuenow="{{system.disk}}" aria-valuemin="0" aria-valuemax="100"
+                     style="width: {{system.disk}}%">
+                    磁盘使用率：{{system.disk}}%
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

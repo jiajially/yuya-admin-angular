@@ -1,0 +1,50 @@
+<div class="col-md-12">
+    <div ba-panel ba-panel-title="列表" ba-panel-class="with-scroll panel-info">
+        <div>
+            <button class="btn btn-primary" ng-click="add()">新增</button>
+        </div>
+        <table class="table" st-table="materials" st-safe-src="rowMaterials">
+            <thead>
+            <tr class="sortable ">
+                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                <th st-sort="summary">描述</th>
+                <th st-sort="url">链接</th>
+                <th st-sort="tag">标记</th>
+                <th>转到&删除</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th><input st-search="summary" placeholder="搜索描述" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th><input st-search="url" placeholder="搜索url" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th><input st-search="tcode" placeholder="搜索标记" class="input-sm form-control search-input"
+                           type="search"/></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in materials">
+                <td class="table-id">{{item.id}}</td>
+                <td>{{item.summary}}</td>
+                <td>{{item.url}}</td>
+                <td>{{item.tag}}</td>
+                <td>
+                    <button class="btn btn-primary btn-icon" ng-click="open(item.url)"><i
+                            class="ion-android-share"></i></button>
+                    <button class="btn btn-danger btn-icon" ng-click="delete(item)"><i
+                            class="ion-close-round"></i></button>
+
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9" class="text-center">
+                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

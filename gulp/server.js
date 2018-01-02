@@ -39,7 +39,12 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     server: server,
     browser: browser,
-    ghostMode: false
+    ghostMode: false,
+    port: 3000,
+      ui: {
+          port: 3001
+      }
+
   });
 }
 

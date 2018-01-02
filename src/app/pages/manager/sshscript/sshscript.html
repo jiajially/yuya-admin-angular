@@ -1,0 +1,142 @@
+<div class="row">
+    <div class="col-md-12">
+        <div
+                ba-panel
+                ba-panel-title="新增"
+                ba-panel-class="with-scroll panel-primary">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>名称</label>
+                    <input type="text" class="form-control" ng-model="ssh.name" placeholder="配置脚本的名称">
+                </div>
+                <div class="form-group">
+                    <label>主机</label>
+                    <select class="form-control selectpicker" id="ssh.hostSelectItems" selectpicker
+                            title="选择主机.."
+                            ng-model="ssh.hostSelectItem"
+                            ng-options="item as item.label for item in ssh.hostSelectItems">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>指令</label>
+                    <textarea class="form-control" id="input02" multiple="multiple" style="height:100px"
+                              placeholder="输入指令" ng-model="ssh.cmd"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>开始时间：</label>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" ng-model="ssh.start"/>
+                        <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>结束时间：</label>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" ng-model="ssh.end"/>
+                        <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>周期</label>
+                    <input type="text" class="form-control" id="cycle" ng-model="ssh.cycle" placeholder="">
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="addScript()" style="float:right">保 存</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="列表" ba-panel-class="with-scroll panel-info">
+
+            <!--<div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>页面数据条目
+                        <select class="form-control selectpicker show-tick" title="页面数据条目" selectpicker
+                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
+                </div>
+                -->
+            <table class="table" st-table="scripts"  st-safe-src="rowScripts">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th st-sort="name">脚本任务</th>
+                    <th st-sort="hostname">主机</th>
+                    <th st-sort="cmd">指令</th>
+                    <th st-sort="status">状态</th>
+                    <th st-sort="rate">周期（s）</th>
+                    <th st-sort="createTime">创建时间</th>
+                    <th st-sort="startTime">开始时间</th>
+                    <th st-sort="endTime">结束时间</th>
+                    <th>查看</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input st-search="name" placeholder="脚本" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="hostname" placeholder="搜索Host" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="cmd" placeholder="搜索指令" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="status" placeholder="搜索状态" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="rate" placeholder="搜索周期"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="createTime" placeholder="创建时间" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="startTime" placeholder="开始时间" class="input-sm form-control search-input"
+                               type="search"/>
+                    </th>
+                    <th><input st-search="endTime" placeholder="结束时间" class="input-sm form-control search-input"
+                               type="search"/>
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in scripts">
+                    <td class="table-id">{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.hostname}}</td>
+                    <td>{{item.cmd}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.rate}}</td>
+                    <td>{{item.createTime}}</td>
+                    <td>{{item.startTime}}</td>
+                    <td>{{item.endTime}}</td>
+                    <td>
+                        <button class="status-button btn btn-xs btn-info" ng-click="log(item.id)">查看</button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="10" class="text-center">
+                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+</div>

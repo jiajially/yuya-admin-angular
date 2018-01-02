@@ -14,10 +14,10 @@
         .state('dashboard', {
           url: '/dashboard',
           templateUrl: 'app/pages/dashboard/dashboard.html',
-          title: 'Dashboard',
+          title: '----------------',
           sidebarMeta: {
-            icon: 'ion-android-home',
-            order: 0,
+            //icon: 'ion-android-home',
+            order: 50,
           },
         });
   }

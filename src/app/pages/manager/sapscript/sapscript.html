@@ -1,0 +1,342 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="配置信息" ba-panel-class="panel-primary with-scroll">
+            <ba-wizard>
+                <ba-wizard-step title="初始化GUI" form="sap.sapguiInfoForm">
+                    <form name="sap.sapguiInfoForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="connType">连接类型</label>
+                                    <div class="form-group">
+                                        <select class="form-control selectpicker" id="connType" selectpicker
+                                                title="连接类型"
+                                                ng-model="sap.sapguiInfo.connTypeSelected"
+                                                ng-options="item as item.label for item in sap.sapguiInfo.connTypeItems">
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group has-feedback"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.summary.$invalid && (sap.sapguiInfoForm.summary.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="summary">描述</label>
+                                    <input type="text" class="form-control" id="summary" name="summary"
+                                           placeholder="描述" ng-model="sap.sapguiInfo.summary" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.host.$invalid && (sap.sapguiInfoForm.host.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="host">应用服务器</label>
+                                    <input class="form-control" id="host" name="host" placeholder="应用服务器"
+                                           ng-model="sap.sapguiInfo.host" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.instanceNo.$invalid && (sap.sapguiInfoForm.instanceNo.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="instanceNo">实例编号</label>
+                                    <input class="form-control" id="instanceNo" name="instanceNo" placeholder="实例编号"
+                                           ng-model="sap.sapguiInfo.instanceNo" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.sid.$invalid && (sap.sapguiInfoForm.sid.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="sid">系统标识</label>
+                                    <input class="form-control" id="sid" name="sid" placeholder="系统标识"
+                                           ng-model="sap.sapguiInfo.sid" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sapRouter">SAP Router 字符串</label>
+                                    <input class="form-control" id="sapRouter" name="sapRouter"
+                                           placeholder="SAP Router 字符串" ng-model="sap.sapguiInfo.sapRouter">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.client.$invalid && (sap.sapguiInfoForm.client.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="client">集团（Client）</label>
+                                    <input class="form-control" id="client" name="client" placeholder="Client"
+                                           ng-model="sap.sapguiInfo.client" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.username.$invalid && (sap.sapguiInfoForm.username.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="client">用户</label>
+                                    <input class="form-control" id="username" name="username" placeholder="用户"
+                                           ng-model="sap.sapguiInfo.username" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-class="{'has-error': sap.sapguiInfoForm.password.$invalid && (sap.sapguiInfoForm.password.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="password">口令</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                           placeholder="口令" ng-model="sap.sapguiInfo.password" required>
+                                    <span class="help-block error-block basic-block">必填</span>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': !sap.arePersonalInfoPasswordsEqual() && (sap.sapguiInfoForm.confirmPassword.$dirty || sap.sapguiInfoForm.$submitted)}">
+                                    <label for="confirmPassword">重复口令</label>
+                                    <input type="password" class="form-control" id="confirmPassword"
+                                           name="confirmPassword" placeholder="重复口令"
+                                           ng-model="sap.sapguiInfo.confirmPassword" required>
+                                    <span class="help-block error-block basic-block">不匹配</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="language">登录语言</label>
+                                    <input class="form-control" id="language" name="language" placeholder="登录语言"
+                                           ng-model="sap.sapguiInfo.language">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ba-wizard-step>
+                <ba-wizard-step title="运维项目" form="sap.maintainForm">
+                    <form name="sap.maintainForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group " ng-class="{'has-error': !sap.isMaintainChecked()}">
+                                    <label for="maintainList">选择项目</label>
+                                    <div class="row" id="maintainList" name="maintainList">
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm12" name="t-code" value="sm12">
+                                                <span>sm12</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm13" name="t-code" value="sm13">
+                                                <span>sm13</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm20" name="t-code" value="sm20">
+                                                <span>sm20</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm21" name="t-code" value="sm21">
+                                                <span>sm21</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm37" name="t-code" value="sm37">
+                                                <span>sm37</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm50" name="t-code" value="sm50">
+                                                <span>sm50</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm51" name="t-code" value="sm51">
+                                                <span>sm51</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm58" name="t-code" value="sm58">
+                                                <span>sm58</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sm66" name="t-code" value="sm66">
+                                                <span>sm66</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="smq2" name="t-code" value="smq2">
+                                                <span>smq2</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="st22" name="t-code" value="st22">
+                                                <span>st22</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="sxmb_moni" name="t-code"
+                                                       value="sxmb_moni">
+                                                <span>sxmb_moni</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="db02" name="t-code" value="db02">
+                                                <span>db02</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="st03n" name="t-code" value="st03n">
+                                                <span>st03n</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="checkbox-inline custom-checkbox nowrap">
+                                                <input type="checkbox" id="st06" name="t-code" value="st06">
+                                                <span>st06</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <span class="help-block error-block basic-block">至少选一个</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group has-feedback"
+                                     ng-class="{'has-error': sap.maintainForm.timeout.$invalid && (sap.maintainForm.timeout.$dirty || sap.timeout.$submitted)}">
+                                    <label for="timeout">超时时间</label>
+                                    <input type="text" class="form-control" id="timeout" name="timeout"
+                                           placeholder="默认 500（ms)" ng-model="sap.maintainInfo.timeout"
+                                           required>
+                                    <span class="help-block error-block basic-block">Required</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </ba-wizard-step>
+
+                <ba-wizard-step title="文档生成" form="sap.docForm">
+                    <form name="sap.docForm1" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback"
+                                     ng-class="{'has-error': sap.docForm.address.$invalid && (sap.docForm.address.$dirty || sap.docForm.$submitted)}">
+                                    <label for="title">文档标题</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           placeholder="文档标题" ng-model="sap.docInfo.title" required>
+                                    <span class="help-block error-block basic-block">Required</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="formate">文件格式</label>
+                                    <select class="form-control selectpicker" id="formate" selectpicker
+                                            title="连接类型"
+                                            ng-model="sap.docInfo.formateSelected"
+                                            ng-options="item as item.label for item in sap.docInfo.formateTypeItems">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ba-wizard-step>
+                <ba-wizard-step title="完成">
+                    <form name="sap.finishForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" ng-click="sap.test()">保存并生成脚本</button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-default" ng-click="sap.save()">仅保存脚本</button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button class="btn btn-default" ng-click="sap.generate()">仅生成脚本</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ba-wizard-step>
+            </ba-wizard>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="列表" ba-panel-class="with-scroll panel-info">
+
+            <!--<div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>页面数据条目
+                        <select class="form-control selectpicker show-tick" title="页面数据条目" selectpicker
+                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
+                </div>
+                -->
+            <table class="table" st-table="scripts" st-safe-src="rowScripts">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th st-sort="summary">描述</th>
+                    <th st-sort="host">主机</th>
+                    <th st-sort="sid">系统标识</th>
+                    <th st-sort="tcode">运维项目</th>
+                    <th st-sort="createTime">创建时间</th>
+                    <th>生成脚本</th>
+                    <th>执行脚本</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input st-search="summary" placeholder="描述" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="host" placeholder="搜索Host" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="sid" placeholder="搜索sid" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="tcode" placeholder="搜索项目" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="createTime" placeholder="创建时间" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in scripts">
+                    <td class="table-id">{{item.id}}</td>
+                    <td>{{item.summary}}</td>
+                    <td>{{item.host}}</td>
+                    <td>{{item.sid}}</td>
+                    <td>{{item.tcode}}</td>
+                    <td>{{item.createTime}}</td>
+                    <td>
+                        <button class="status-button btn btn-xs btn-info" ng-click="sap.generateById(item.id)">生成</button>
+                    </td>
+                    <td>
+                        <button class="status-button btn btn-xs btn-info" ng-click="sap.execById(item.id)">执行</button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="9" class="text-center">
+                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

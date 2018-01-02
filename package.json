@@ -1,5 +1,5 @@
 {
-  "name": "blur_admin",
+  "name": "yuya-admin-angular",
   "version": "1.3.1",
   "devDependencies": {
     "browser-sync": "~2.18.2",
@@ -44,5 +44,8 @@
   },
   "scripts": {
     "postinstall": "bower install"
+  },
+  "dependencies": {
+    "adm-dtp": "^1.2.0"
   }
 }

@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-12">
+        <div
+                ba-panel
+                ba-panel-title="新增"
+                ba-panel-class="with-scroll panel-primary">
+            <form>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label >描述</label>
+                        <input type="text" class="form-control" ng-model="host.summary" placeholder="主机描述">
+                    </div>
+                    <div class="form-group">
+                        <label >主机</label>
+                        <input type="text" class="form-control" ng-model="host.host" placeholder="主机ip">
+                    </div>
+                    <div class="form-group">
+                        <label >端口</label>
+                        <input type="text" class="form-control" ng-model="host.port" placeholder="端口号">
+                    </div>
+
+                    <div class="form-group">
+                        <label >PATH</label>
+                        <textarea class="form-control" id="input02" multiple="multiple" style="height:100px"
+                                  disabled="disabled"
+                                  ng-model="host.path"
+                                 ></textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label >用户名</label>
+                        <input type="text" class="form-control" ng-model="host.username" placeholder="账户">
+                    </div>
+                    <div class="form-group">
+                        <label >密码</label>
+                        <input type="password"  class="form-control" ng-model="host.password" placeholder="密码">
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <div class="form-group">
+                        <button class="btn btn-primary" style="float:right;" ng-click="save()">保 存</button>
+                        <button class="btn btn-info" style="float:right;" ng-click="valid()">验 证</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="主机信息" ba-panel-class="with-scroll panel-info">
+
+            <!--<div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>页面数据条目
+                        <select class="form-control selectpicker show-tick" title="页面数据条目" selectpicker
+                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
+                </div>
+                -->
+            <table class="table" st-table="reports" st-safe-src="rowReports">
+                <thead>
+                <tr class="sortable ">
+                    <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                    <th st-sort="summary">描述</th>
+                    <th st-sort="hostPort">IP:PORT</th>
+                    <th st-sort="loginName">登录名</th>
+                    <th st-sort="isValid" width="25">已验证</th>
+                    <th st-sort="isEnable" width="50">已启用</th>
+                    <th st-sort="createTime">创建时间</th>
+                    <th st-sort="updateTime">更新时间</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input st-search="summary" placeholder="搜索描述" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="hostPort" placeholder="搜索Host" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="loginName" placeholder="登录名" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="isValid" placeholder="t/f" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="isEnable" placeholder="t/f"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="createTime" placeholder="创建时间" class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><input st-search="updateTime" placeholder="更新时间" class="input-sm form-control search-input"
+                               type="search"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in reports">
+                    <td class="table-id">{{item.id}}</td>
+                    <td>{{item.summary}}</td>
+                    <td>{{item.hostPort}}</td>
+                    <td>{{item.loginName}}</td>
+                    <td>
+                        <div class="btn-group"  >
+                            <div class="btn btn-success btn-icon" ng-if="item.isValid" ng-click="validHost(item)"><i class="ion-checkmark-round"></i></div>
+                            <div class="btn btn-danger btn-icon" ng-if="!item.isValid" ng-click="validHost(item)"><i class="ion-close-round"></i></div>
+                        </div>
+                    </td>
+                    <td>
+                        <ba-switcher switcher-style="primary" switcher-value="item.isEnable" ng-disabled="true" ng-click="enableHost(item)" ></ba-switcher>
+                    </td>
+                    <td>{{item.createTime}}</td>
+                    <td>{{item.updateTime}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="9" class="text-center">
+                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+</div>

@@ -13,7 +13,7 @@ var gutil = require('gulp-util');
  */
 exports.paths = {
   src: 'src',
-  dist: 'release',
+  dist: '/Users/liugang/Documents/项目/项目管理/后台管理监控/后台项目/git/yuya-admin-web/src/main/resources/static',
   devDist: 'dev-release',
   tmp: '.tmp',
   e2e: 'e2e'

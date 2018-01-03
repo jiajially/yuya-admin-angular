@@ -7,28 +7,32 @@
     </div>
     <div class="modal-body">
         <div class="row">
-            <table class="table" st-table="materials" st-safe-src="rowMaterials">
+            <table class="table" st-table="logs" st-safe-src="rowLogs">
                 <thead>
                 <tr class="sortable ">
                     <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                    <th st-sort="summary">描述</th>
-                    <th st-sort="url">链接</th>
-                    <th st-sort="tag">标记</th>
-                    <th>转到&删除</th>
+                    <th st-sort="name">脚本任务</th>
+                    <th st-sort="cmd">指令</th>
+                    <th st-sort="status">执行状态</th>
+                    <th st-sort="createTime">执行时间</th>
+                    <th>查看</th>
                 </tr>
 
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in materials">
+                <tr ng-repeat="item in logs">
                     <td class="table-id">{{item.id}}</td>
-                    <td>{{item.summary}}</td>
-                    <td>{{item.url}}</td>
-                    <td>{{item.tag}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.cmd}}</td>
                     <td>
-                        <button class="btn btn-primary btn-icon" ng-click="open(item.url)"><i
-                                class="ion-android-share"></i></button>
-                        <button class="btn btn-danger btn-icon" ng-click="delete(item)"><i
-                                class="ion-close-round"></i></button>
+                        <front ng-if="item.status==1" style='color: #00ee00'>执行成功</front>
+
+                        <front ng-if="item.status!=1" style='color: #CC2222'>执行失败</front>
+
+                    <td>{{item.createTime}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-icon" ng-click="open(item.id)"><i
+                                class="ion-search"></i></button>
 
                     </td>
                 </tr>
@@ -45,6 +49,6 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="ok()">确定</button>
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">确定</button>
     </div>
 </div>

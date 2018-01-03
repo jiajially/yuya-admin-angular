@@ -11,7 +11,17 @@
                     </label>
                 </div>
                 -->
-            <table class="table" st-table="reports">
+            <div class="col-md-6">
+                <button class="btn btn-primary" ng-click="script()">设置脚本</button>
+                <label>当前脚本：{{currentScript}}</label>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-info" ng-click="exec()">生成报告</button>
+                <button class="btn btn-success" ng-click="reload()">刷新</button>
+            </div>
+            <br>
+
+            <table class="table" st-table="reports" st-safe-src="rowReports">
                 <thead>
                 <tr class="sortable ">
                     <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -19,7 +29,8 @@
                     <th st-sort="createTime">巡检时间</th>
                     <th st-sort="creator">巡检人</th>
                     <th st-sort="summary">结论</th>
-                    <th>查看报告</th>
+                    <th>查看</th>
+                    <th>审核</th>
                 </tr>
                 <tr>
                     <th></th>
@@ -33,6 +44,7 @@
                                type="search"/>
                     </th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,13 +55,18 @@
                     <td>{{item.creator}}</td>
                     <td>{{item.summary}}</td>
                     <td>
-                        <button class="status-button btn btn-xs btn-info">查看</button>
+                        <button class="status-button btn btn-xs btn-info" ng-click="open(item)">查看</button>
+                    </td>
+                    <td>
+                        <button ng-if="item.check" class="status-button btn btn-xs btn-primary" ng-click="check(item)">重新审核</button>
+
+                        <button ng-if="!item.check" class="status-button btn btn-xs btn-warning" ng-click="check(item)">审核</button>
                     </td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="6" class="text-center">
+                    <td colspan="10" class="text-center">
                         <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
                     </td>
                 </tr>

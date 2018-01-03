@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label for="sapRouter">SAP Router 字符串</label>
                                     <input class="form-control" id="sapRouter" name="sapRouter"
-                                           placeholder="SAP Router 字符串" ng-model="sap.sapguiInfo.sapRouter">
+                                           placeholder="SAP Router 字符串(格式：host:port)" ng-model="sap.sapguiInfo.sapRouter">
                                 </div>
 
                             </div>
@@ -285,6 +285,9 @@
                     </label>
                 </div>
                 -->
+            <div>
+                <button class="btn btn-primary" ng-click="sap.openFileList()">查看文件</button>
+            </div>
             <table class="table" st-table="scripts" st-safe-src="rowScripts">
                 <thead>
                 <tr class="sortable ">
@@ -332,7 +335,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="9" class="text-center">
-                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
                     </td>
                 </tr>
                 </tfoot>

@@ -1,0 +1,55 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">文件列表</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+      <button class="btn btn-primary" ng-click="reload()">刷新</button>
+      </div>
+      <div class="col-md-12">
+      <table class="table" st-table="filelist" st-safe-src="rowFilelist">
+        <thead>
+        <tr class="sortable ">
+          <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+          <th st-sort="name">文件名称</th>
+          <th st-sort="lastModifyTime">生成时间</th>
+          <th>下载</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th><input st-search="name" placeholder="文件名称" class="input-sm form-control search-input"
+                     type="search"/></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in filelist">
+          <td class="table-id">{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.lastModifyTime}}</td>
+          <td>
+            <button class="status-button btn btn-xs btn-info" ng-click="open(item.name)">下载</button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="9" class="text-center">
+            <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$dismiss()">确定</button>
+  </div>
+</div>

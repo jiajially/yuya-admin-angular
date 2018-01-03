@@ -5,7 +5,7 @@
         .controller('sapscriptCtrl', sapscriptCtrl);
 
     /** @ngInject */
-    function sapscriptCtrl($scope, portal2,toastr) {
+    function sapscriptCtrl($scope, portal2,toastr,$uibModal) {
 
 
         var sap = this;
@@ -144,8 +144,12 @@
         sap.execById = function (id) {
             portal2.get("/manager/sapscript/execById", {
                 id: id,
-            },function () {
-                
+            },function (result) {
+                if(result.code==10000){
+                    toastr.success('提交任务成功，请等待后台执行，稍后刷新。', '执行成功', {
+                        "positionClass": "toast-bottom-right",
+                    });
+                }
             });
         };
 
@@ -194,6 +198,41 @@
         };
 
         init();
+
+
+        sap.openFileList = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/manager/sapscript/filelist.html',
+                size: 'md',//sm,lg
+                controller:openFileListController
+
+            });
+        }
+
+
+
+        var openFileListController = function ($scope) {
+            function load() {
+                portal2.get("/manager/sapscript/filelist", {}, function (result) {
+                    if (result.code == 10000) {
+                        $scope.filelist = result.data;
+                        $scope.rowFilelist = result.data;
+                    }
+                })
+            }
+            load();
+            $scope.reload = function () {
+                load();
+            }
+            $scope.open = function (filename) {
+                portal2.download("/manager/sapscript/file/download",{filename:filename})
+            }
+
+        };
+
+
+
     }
 
 })();

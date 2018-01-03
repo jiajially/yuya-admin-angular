@@ -1,0 +1,30 @@
+<div class="modal-content">
+  <div class="modal-header bg-warning">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">审核</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+
+      <div class="col-md-6">
+        <label>设置报告名称</label>
+        <input class="form-control" ng-model="name" >
+      </div>
+      <div class="col-md-6">
+        <label>文件类型</label>
+        <input class="form-control" ng-model="suffix" >
+      </div>
+      <div class="col-md-12">
+        <label>结论</label>
+        <input class="form-control" ng-model="summary" >
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="ok()">确定</button>
+  </div>
+</div>
